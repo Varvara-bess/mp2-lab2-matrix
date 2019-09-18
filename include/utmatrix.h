@@ -142,11 +142,14 @@ public:
 	  }
   }
 	  
-  TMatrix(const TMatrix<ValType> &mt) :TVector<TVector<ValType>>(mt){};                    // копирование
-  TMatrix(const TVector<TVector<ValType> > &mt); // преобразование типа
+  TMatrix(const TMatrix<ValType> &mt) :TVector<TVector<ValType>>(mt){}           // копирование
+  TMatrix(const TVector<TVector<ValType> > &mt) :TVector<TVector<ValType>>(mt){} // преобразование типа
   bool operator==(const TMatrix &mt) const;      // сравнение
   bool operator!=(const TMatrix &mt) const;      // сравнение
-  TMatrix& operator= (const TMatrix &mt);        // присваивание
+  TMatrix& operator= (const TMatrix &mt)		// присваивание
+  {
+
+	 
   TMatrix  operator+ (const TMatrix &mt);        // сложение
   TMatrix  operator- (const TMatrix &mt);        // вычитание
 
