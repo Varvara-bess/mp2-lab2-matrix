@@ -88,6 +88,7 @@ bool TVector<ValType>::operator==(const TVector &v) const
 template <class ValType> // сравнение
 bool TVector<ValType>::operator!=(const TVector &v) const
 {
+
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // присваивание
@@ -98,6 +99,7 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 template <class ValType> // прибавить скаляр
 TVector<ValType> TVector<ValType>::operator+(const ValType &val)
 {
+	return *this;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычесть скаляр
@@ -131,8 +133,16 @@ template <class ValType>
 class TMatrix : public TVector<TVector<ValType> >
 {
 public:
-  TMatrix(int s = 10);                           
-  TMatrix(const TMatrix &mt);                    // копирование
+  TMatrix(int s = 10):Tvector<Tvector<ValType>>(s)
+  {
+	  for (int i = 0; i < size; i++)
+	  {
+		  Tvector<ValType> v(s - i, i)
+			  pVector[i] = v;
+	  }
+  }
+	  
+  TMatrix(const TMatrix<ValType> &mt) :TVector<TVector<ValType>>(mt){};                    // копирование
   TMatrix(const TVector<TVector<ValType> > &mt); // преобразование типа
   bool operator==(const TMatrix &mt) const;      // сравнение
   bool operator!=(const TMatrix &mt) const;      // сравнение
